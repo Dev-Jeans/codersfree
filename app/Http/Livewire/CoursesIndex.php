@@ -9,7 +9,7 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 
-class CourseIndex extends Component
+class CoursesIndex extends Component
 {
     use withPagination;
 
@@ -26,7 +26,7 @@ class CourseIndex extends Component
         $categories = Category::all();
         $levels = Level::all();
 
-        return view('livewire.course-index',compact('courses','categories','levels'));
+        return view('livewire.courses-index',compact('courses','categories','levels'));
     }
 
     public function resetFilters(){
