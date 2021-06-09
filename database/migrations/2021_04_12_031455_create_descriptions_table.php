@@ -17,7 +17,7 @@ class CreateDescriptionsTable extends Migration
             $table->id();
             $table->text('name');
             $table->unsignedBigInteger('lesson_id');
-            $table->foreign('lesson_id')->references('id')->on('lessons')->ondelete('cascade');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
             $table->timestamps();
         });
     }

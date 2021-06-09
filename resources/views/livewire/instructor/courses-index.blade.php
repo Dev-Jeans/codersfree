@@ -1,8 +1,9 @@
 <div class="container py-8">
     <x-table-responsive>
 
-        <div class="px-6 py-4">
-            <x-jet-input wire:keydown="clean_page" wire:model="search" type="text" class="w-full shadow-sm" placeholder="Ingrese el nombre de un curso ..." />
+        <div class="px-6 py-4 flex">
+            <x-jet-input wire:keydown="clean_page" wire:model="search" type="text" class="flex-1 shadow-sm" placeholder="Ingrese el nombre de un curso ..." />
+            <a class="btn btn-danger ml-2" href="{{ route('instructor.courses.create') }}">Nuevo Curso</a>
         </div>
         @if ($courses->count())
             
@@ -32,7 +33,11 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full" src="{{ Storage::url($course->image->url) }}" alt="">
+                                        @isset($course->image)
+                                            <img class="h-10 w-10 rounded-full object-cover object-center" src="{{ Storage::url($course->image->url) }}" alt="">
+                                        @else
+                                            <img class="h-10 w-10 rounded-full object-cover object-center" src="https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                                        @endisset
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
@@ -96,7 +101,7 @@
                                 
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="{{ route('instructor.courses.edit', $course) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                             </td>
                         </tr>
                     @endforeach 
